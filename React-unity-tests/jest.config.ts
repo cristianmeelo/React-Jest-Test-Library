@@ -173,7 +173,32 @@ export default {
   // testRunner: "jest-circus/runner",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+   transform: {
+    "ˆ.+\\/(t|j)sx?$": [
+      "@swc/jest",
+      {
+        jsc: {
+          parser: {
+            sintax: 'typescript',
+            tax:true,
+            decorators: true,
+          },
+          keepClassName: true,
+          transform: {
+            legacyDecorator: true,
+            decorateMetadata: true,
+            react: {
+              runtime: 'automatic'
+            },
+          },
+        },
+        module: {
+          type: 'es6',
+          noInterop: false,
+        }
+      },
+    ],
+   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
